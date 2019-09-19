@@ -4,6 +4,7 @@ import './style.css';
 const urlEl = document.getElementById('url');
 let url = '';
 const submitEl = document.getElementById('submit');
+const errorEl = document.getElementById('error');
 const resultEl = document.getElementById('result');
 const rawEl = document.getElementById('raw');
 const codeEl = document.getElementById('code');
@@ -89,13 +90,35 @@ submitEl.onclick = () => {
   resultEl.innerHTML = '';
   rawEl.innerHTML = '';
   codeEl.innerHTML = '';
+  errorEl.innerHTML = '';
+  errorEl.classList.remove('visible');
 
   fetch(url)
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        return response.text().then(text => {
+          const error = new Error(response.statusText);
+          error.status = response.status;
+          error.body = text;
+          throw error;
+        });
+      } else {
+        return response.json();
+      }
+    })
     .then(data => {
       resultEl.appendChild(renderResult(data));
       rawEl.innerHTML = JSON.stringify(data, null, '  ');
       hljs.highlightBlock(rawEl);
     })
-    .catch(err => {});
+    .catch(err => {
+      if (err.status) {
+        errorEl.innerHTML = `${err.status} - ${err.message}`;
+        rawEl.innerText = err.body;
+      } else {
+        errorEl.innerHTML = err.message;
+      }
+
+      errorEl.classList.add('visible');
+    });
 };

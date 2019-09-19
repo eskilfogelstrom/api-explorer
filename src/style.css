@@ -6,6 +6,7 @@ body {
   background-color: rgb(19, 13, 60);
   color: #fff;
   font-family: 'Arial', sans-serif;
+  margin: 0;
 }
 
 pre {
@@ -16,6 +17,7 @@ pre {
   max-width: 1000px;
   margin: 0 auto;
   margin-top: 8rem;
+  padding: 1rem;
 }
 
 .title {
@@ -24,12 +26,12 @@ pre {
 
 .description {
   text-align: center;
+  margin-bottom: 4rem;
 }
 
 .url {
   display: flex;
   justify-content: center;
-  padding: 4rem 0;
 }
 
 .url__input {
@@ -50,10 +52,23 @@ pre {
   padding: 0.5rem 2rem;
 }
 
+.error {
+  background-color: rgb(189, 78, 78);
+  padding: 1rem;
+  width: 400px;
+  margin: 2rem auto;
+  display: none;
+}
+
+.error.visible {
+  display: block;
+}
+
 .cols {
   display: grid;
   grid-template-columns: 50% 50%;
   grid-column-gap: 1rem;
+  margin-top: 4rem;
 }
 
 .col {
