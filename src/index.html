@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css"
+    />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <input type="text" id="url" class="url-input" />
+      <button id="submit" class="url-submit">Go</button>
+      <div class="cols">
+        <div class="cols__col col">
+          <h2 class="col__title">Data</h2>
+          <div id="result" class="col__content result-list"></div>
+        </div>
+        <div class="cols__col col">
+          <h2 class="col__title">Code</h2>
+          <div class="col__content code">
+            <pre><code id="code" class="javascript"></code></pre>
+          </div>
+          <h2 class="col__title">Raw</h2>
+          <div class="col__content raw">
+            <pre><code id="raw" class="json"></code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+  </body>
+</html>
