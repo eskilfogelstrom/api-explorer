@@ -113,7 +113,7 @@ submitEl.onclick = () => {
     })
     .catch(err => {
       if (err.status) {
-        errorEl.innerHTML = `${err.status} - ${err.message}`;
+        errorEl.innerHTML = `${err.status} - ${err.statusText}`;
         rawEl.innerText = err.body;
       } else {
         errorEl.innerHTML = err.message;
